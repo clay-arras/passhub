@@ -7,7 +7,7 @@ export default function CategoryButton({ categoryName, handleClick }) {
         <div className="items-center justify-center flex">
           {getCategory(categoryName)}
         </div>
-        <div className="text-sm text-center font-medium text-gray-500 font-sans">
+        <div className="text-sm text-center font-light text-gray-500 font-sans">
           {categoryName}
         </div>
       </button>
