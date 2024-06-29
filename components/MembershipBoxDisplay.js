@@ -6,13 +6,15 @@ export default function MembershipBoxDisplay({
   price,
 }) {
   return (
-    <div className="w-64 bg-white overflow-hidden border rounded-lg m-4">
+    <div className="bg-white overflow-hidden border rounded-lg m-2">
       <div className="">
-        <img className="object-cover" src={picture} />
+        <img className="object-cover aspect-video" src={picture} />
       </div>
       <div className="mt-2 m-3">
         <div className="flex">
-          <div className="font-bold text-lg grow">{name}</div>
+          <div className="font-bold text-md grow text-ellipsis overflow-hidden text-nowrap mr-3">
+            {name}
+          </div>
           <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,11 +35,13 @@ export default function MembershipBoxDisplay({
             </span>
           </div>
         </div>
-        <div className="text-sm text-gray-700 font-sans flex">
-          <span className="grow">{location}</span>
-          <div className="text-right">6,053 miles</div>
+        <div className="text-xs text-gray-700 font-sans flex">
+          <span className="text-ellipsis overflow-hidden text-nowrap">
+            {location}
+          </span>
+          {/* <div className="ml-3 text-right grow text-ellipsis overflow-hidden text-nowrap">6,053 miles</div> */}
         </div>
-        <div className="text-sm font-sans mt-1">
+        <div className="text-xs font-sans mt-1">
           <span className="font-medium">${price}</span>
           <span className="text-gray-500"> / week</span>
         </div>

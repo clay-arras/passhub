@@ -1,4 +1,4 @@
-import {Schema, models, model} from "mongoose";
+import { Schema, models, model } from "mongoose";
 
 const MembershipSchema = new Schema({
   name: String,
@@ -9,6 +9,6 @@ const MembershipSchema = new Schema({
   price: Number,
 });
 
-const Membership = models?.Membership || model('Membership', MembershipSchema);
+const Membership = models?.Membership || model("Membership", MembershipSchema);
 
 export default Membership;
