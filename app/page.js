@@ -8,6 +8,7 @@ import MembershipBoxDisplay from "@/components/MembershipBoxDisplay";
 export default function Home() {
   const [categorySelect, setCategorySelect] = useState("All");
   const [productsInfos, setProductsInfos] = useState([]);
+  const [phrase, setPhrase] = useState("");
   useEffect(() => {
     fetch("/api/membership")
       .then((res) => res.json())
@@ -18,11 +19,26 @@ export default function Home() {
   if (categorySelect === "All") {
     displayProductsInfos = productsInfos;
   } else {
-    displayProductsInfos = productsInfos.filter((productInfos) => productInfos.category === categorySelect);
+    displayProductsInfos = productsInfos.filter(
+      (productInfos) => productInfos.category === categorySelect
+    );
+  }  
+  
+  if (phrase) {
+    displayProductsInfos = displayProductsInfos.filter((p) => p.name.toLowerCase().includes(phrase));
   }
 
   return (
     <div className="p-1">
+      <div className="m-2">
+        <input
+          value={phrase}
+          onChange={(e) => setPhrase(e.target.value)}
+          type="text"
+          placeholder="Search for products..."
+          className="bg-gray-100 w-full py-2 px-4 rounded-xl font-light font-sans"
+        />
+      </div>
       <div className="mx-2">
         <div
           className={
@@ -31,12 +47,13 @@ export default function Home() {
         >
           {categoryNames.map((categoryName) => {
             return (
-              <div className="snap-start min-w-32 flex grow items-center justify-center p-2 m-1 rounded-xl border">
+              <div className="snap-start min-w-32 flex grow items-center justify-center m-1 rounded-xl border">
                 <CategoryButton
                   handleClick={() => {
                     setCategorySelect(categoryName);
                   }}
                   categoryName={categoryName}
+                  isSelected={categorySelect === categoryName}
                 />
               </div>
             );
@@ -44,7 +61,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex my-3 border-t pt-3 mx-2"></div>
-      <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"> 
+      <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {displayProductsInfos.map((productInfos) => {
           return (
             <div>

@@ -1,16 +1,14 @@
 import { getCategory } from "@/lib/category";
 
-export default function CategoryButton({ categoryName, handleClick }) {
+export default function CategoryButton({ categoryName, handleClick, isSelected }) {
   return (
-    <div>
-      <button onClick={handleClick}>
-        <div className="items-center justify-center flex">
-          {getCategory(categoryName)}
-        </div>
-        <div className="text-xs text-center font-light text-gray-500 font-sans">
-          {categoryName}
-        </div>
-      </button>
-    </div>
+    <button onClick={handleClick} className="w-full p-2">
+      <div className={(isSelected ? "stroke-black " : "stroke-gray-400 ") + "items-center justify-center flex"}>
+        {getCategory(categoryName)}
+      </div>
+      <div className={(isSelected ? "text-black " : "text-gray-400 ") + "text-xs text-center font-light font-sans"}>
+        {categoryName}
+      </div>
+    </button>
   );
 }

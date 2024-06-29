@@ -6,7 +6,7 @@ export default function MembershipBoxDisplay({
   price,
 }) {
   return (
-    <div className="bg-white overflow-hidden border rounded-lg m-2">
+    <div className="bg-white overflow-hidden border rounded-lg m-2 grow">
       <div className="">
         <img className="object-cover aspect-video" src={picture} />
       </div>
