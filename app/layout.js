@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import MembershipHeader from "@/components/MembershipHeader";
+import Header from "@/components/Header";
 import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <MembershipHeader />
+          <Header />
           {children}
         </Providers>
       </body>

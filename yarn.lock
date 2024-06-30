@@ -296,7 +296,7 @@
     "@react-types/breadcrumbs" "3.7.5"
     "@react-types/shared" "3.23.1"
 
-"@nextui-org/button@2.0.34":
+"@nextui-org/button@^2.0.34", "@nextui-org/button@2.0.34":
   version "2.0.34"
   resolved "https://registry.npmjs.org/@nextui-org/button/-/button-2.0.34.tgz"
   integrity sha512-VeFpOs7trX6u6FqeGr0XCpuNqPhXTLqsmt4iaygvheZCbzrTKvWHd4QMqSh2CPsNH8UFUBSFJjr3oaf3a0SYWQ==
