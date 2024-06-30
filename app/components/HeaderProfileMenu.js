@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 export default function HeaderProfileMenu() {
-  const { session } = useSession();
+  const { data: session } = useSession();
   return (
     <Dropdown className="">
       <DropdownTrigger>
@@ -35,13 +35,11 @@ export default function HeaderProfileMenu() {
         </button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key="account">
-          <Link href={"/account"} className="text-sm">
-            Your Profile
-          </Link>
+        <DropdownItem key="account" className="text-sm" href={"/account"}>
+          Your Profile
         </DropdownItem>
-        <DropdownItem key="signout" className="text-sm text-gray-500">
-          <button onClick={() => signOut()}>Sign Out</button>
+        <DropdownItem key="signout" className="text-sm text-gray-500" onPress={() => signOut()}>
+          Sign Out
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
