@@ -5,13 +5,15 @@ export async function findAllMemberships() {
   return Membership.find().exec();
 }
 
-export default async function handle(req, res) {
+async function handler(req, res) {
   await initMongoose();
-  const { ids } = req.query;
+  const ids = req.nextUrl.searchParams.get("ids");
   if (ids) {
     const idsArray = ids.split(",");
-    res.json(await Membership.find({ _id: { $in: idsArray } }).exec());
+    return Response.json(await Membership.find({ _id: { $in: idsArray } }));
   } else {
-    res.json(await findAllMemberships());
+    return Response.json(await findAllMemberships());
   }
 }
+
+export { handler as GET, handler as POST };

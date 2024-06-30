@@ -1,6 +1,9 @@
 "use client";
 
-import { MembershipContextProvider, MembershipContext } from "@/components/MembershipContext";
+import {
+  MembershipContextProvider,
+  MembershipContext,
+} from "@/components/MembershipContext";
 import { useContext } from "react";
 
 export default function CheckoutPage() {
