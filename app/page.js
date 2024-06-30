@@ -22,10 +22,12 @@ export default function Home() {
     displayProductsInfos = productsInfos.filter(
       (productInfos) => productInfos.category === categorySelect
     );
-  }  
-  
+  }
+
   if (phrase) {
-    displayProductsInfos = displayProductsInfos.filter((p) => p.name.toLowerCase().includes(phrase));
+    displayProductsInfos = displayProductsInfos.filter((p) =>
+      p.name.toLowerCase().includes(phrase)
+    );
   }
 
   return (
@@ -36,7 +38,7 @@ export default function Home() {
           onChange={(e) => setPhrase(e.target.value)}
           type="text"
           placeholder="Search for products..."
-          className="bg-gray-100 w-full py-2 px-4 rounded-xl font-light font-sans"
+          className="bg-stone-100 w-full py-2 px-4 rounded-xl font-light font-sans"
         />
       </div>
       <div className="mx-2">
@@ -63,18 +65,7 @@ export default function Home() {
       <div className="flex my-3 border-t pt-3 mx-2"></div>
       <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {displayProductsInfos.map((productInfos) => {
-          return (
-            <div>
-              <MembershipBoxDisplay
-                name={productInfos.name}
-                category={productInfos.category}
-                location={productInfos.location}
-                picture={productInfos.picture}
-                rating={productInfos.rating}
-                price={productInfos.price}
-              />
-            </div>
-          );
+          return <MembershipBoxDisplay {...productInfos} />;
         })}
       </div>
     </div>
