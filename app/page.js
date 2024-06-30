@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import categoryNames from "@/app/lib/category";
-import CategoryButton from "@/app/components/CategoryButton";
-import MembershipBoxDisplay from "@/app/components/MembershipBoxDisplay";
+import categoryNames from "@/lib/category";
+import CategoryButton from "@/components/CategoryButton";
+import MembershipBoxDisplay from "@/components/MembershipBoxDisplay";
 
 export default function Home() {
   const [categorySelect, setCategorySelect] = useState("All");

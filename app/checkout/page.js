@@ -3,7 +3,7 @@
 import {
   MembershipContextProvider,
   MembershipContext,
-} from "@/app/components/MembershipContext";
+} from "@/components/MembershipContext";
 import { useContext } from "react";
 
 export default function CheckoutPage() {

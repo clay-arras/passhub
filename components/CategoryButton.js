@@ -1,4 +1,4 @@
-import { getCategory } from "@/app/lib/category";
+import { getCategory } from "@/lib/category";
 
 export default function CategoryButton({ categoryName, handleClick, isSelected }) {
   return (

@@ -1,5 +1,5 @@
-import Membership from "@/app/models/Membership";
-import { initMongoose } from "@/app/lib/mongoose";
+import Membership from "@/models/Membership";
+import { initMongoose } from "@/lib/mongoose";
 
 export async function findAllMemberships() {
   return Membership.find().exec();

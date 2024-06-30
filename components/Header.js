@@ -11,9 +11,7 @@ import {Button, ButtonGroup} from "@nextui-org/button";
 export default function Header() {
   const router = useRouter();
   const { selectedMemberships } = useContext(MembershipContext);
-  const { data: session } = useSession();
-
-  console.log(useSession());
+  const { session } = useSession();
 
   return (
     <header className="flex-nowrap overflow-clip overflow-hidden sticky top-0 bg-white p-3 w-full flex border-t border-gray-200 justify-center space-x-12 text-black font-sans font-light">
