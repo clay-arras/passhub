@@ -7,6 +7,7 @@ const MembershipSchema = new Schema({
   category: String,
   picture: String,
   price: Number,
+  desc: String,
 });
 
 const Membership = models?.Membership || model("Membership", MembershipSchema);

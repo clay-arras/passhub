@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MembershipContext } from "./MembershipContext";
 import { useContext } from "react";
-import { useSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import HeaderProfileMenu from "./HeaderProfileMenu";
-import { Button, ButtonGroup } from "@nextui-org/button";
 
 export default function Header() {
   const router = useRouter();
@@ -69,12 +68,7 @@ export default function Header() {
             </span>
           </button>
         </Link>
-        {session && <HeaderProfileMenu />}
-        {!session && (
-          <Button color="default" variant="light" onPress={() => signIn()}>
-            Sign In
-          </Button>
-        )}
+        <HeaderProfileMenu />
       </div>
     </header>
   );
