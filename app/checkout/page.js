@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  MembershipContext,
-} from "@/app/components/MembershipContext";
+import { MembershipContext } from "@/app/components/MembershipContext";
 import { useContext, useEffect, useState } from "react";
 
 export default function CheckoutPage() {
@@ -15,8 +13,6 @@ export default function CheckoutPage() {
       .then((res) => res.json())
       .then((res) => {
         setMembershipsInfos(res);
-        console.log("HI", membershipsInfos);
-        console.log(selectedMemberships);
       });
   }, [selectedMemberships]);
 
