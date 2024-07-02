@@ -45,7 +45,7 @@ export default function Header() {
       <div className="flex">
         <Link
           className="pl-1 min-w-16 items-center justify-center flex flex-col"
-          href={"/checkout"}
+          href={"/cart"}
         >
           <button className="group">
             <div className="items-center justify-center flex">

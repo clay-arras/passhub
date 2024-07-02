@@ -51,7 +51,7 @@ export default function CheckoutPage() {
               <div className="flex flex-col">
                 {membershipsInfos?.map((membershipInfos) => (
                   <MembershipCheckoutBoxDisplay
-                    {...membershipInfos}
+                    membershipInfos={membershipInfos}
                     handleDelete={() => removeFromSelected(membershipInfos._id)}
                   />
                 ))}
@@ -64,7 +64,19 @@ export default function CheckoutPage() {
             <div className="mt-2 text-md">Delivery: ${delivery}</div>
             <div className="mt-2 border-t border-slate-400"></div>
             <div className="mt-2 text-md">Total: ${subtotal + delivery}</div>
-            <button className="bg-stone-400 mt-3 rounded-xl p-2 text-white drop-shadow-md">Check out</button>
+            <form action={"/api/checkout?ids=" + selectedMemberships.join(",")} method="POST">
+              <input
+                type="hidden"
+                name="memberships"
+                value={selectedMemberships.join(",")}
+              />
+              <button
+                type="submit"
+                className="bg-stone-400 mt-3 rounded-xl p-2 text-white drop-shadow-md"
+              >
+                Check out
+              </button>
+            </form>
           </div>
         </div>
       </div>

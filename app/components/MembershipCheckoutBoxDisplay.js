@@ -1,4 +1,5 @@
-export default function MembershipCheckoutBoxDisplay({ _id, picture, name, desc, price }, handleDelete) {
+export default function MembershipCheckoutBoxDisplay({ membershipInfos, handleDelete }) {
+  const { _id, picture, name, desc, price } = membershipInfos;
   return (
     <div key={_id} className="flex flex-row my-2 h-40">
       <div className="w-1/3 h-40 overflow-clip rounded-lg">
