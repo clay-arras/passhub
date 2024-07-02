@@ -56,7 +56,10 @@ export default function Home() {
           >
             {categoryNames.map((categoryName) => {
               return (
-                <div key={categoryName} className="snap-start min-w-32 flex grow items-center justify-center m-1 rounded-xl border">
+                <div
+                  key={categoryName}
+                  className="snap-start min-w-32 flex grow items-center justify-center m-1 rounded-xl border"
+                >
                   <CategoryButton
                     handleClick={() => {
                       setCategorySelect(categoryName);
