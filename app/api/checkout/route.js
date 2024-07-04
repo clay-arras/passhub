@@ -38,7 +38,7 @@ async function handler(req, res) {
   const checkoutSession = await stripe.checkout.sessions.create({
     line_items: line_items,
     mode: "payment",
-    customer_email: session.user.email,
+    customer_email: session?.user?.email,
     success_url: `${req.headers.get("origin")}/?success=true`,
     cancel_url: `${req.headers.get("origin")}/?canceled=true`,
   });
