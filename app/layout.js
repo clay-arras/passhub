@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/app/components/Header";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/app/components/SessionProvider";
-import { MembershipContextProvider } from "./components/MembershipContext";
+import ClientProviders from "./components/ClientProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +19,10 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider session={session}>
-          <MembershipContextProvider>
+          <ClientProviders>
             <Header />
             <main>{children}</main>
-          </MembershipContextProvider>
+          </ClientProviders>
         </SessionProvider>
       </body>
     </html>

@@ -1,17 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { MembershipContext } from "./MembershipContext";
 import { useContext, useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
 import HeaderProfileMenu from "./HeaderProfileMenu";
 
 export default function Header() {
-  const router = useRouter();
-  const { selectedMemberships, setSelectedMemberships } = useContext(MembershipContext);
+  const { selectedMemberships, setSelectedMemberships } =
+    useContext(MembershipContext);
   const [success, setSuccess] = useState(false);
-  const { data: session } = useSession();
 
   useEffect(() => {
     if (window.location.href.includes("success")) {
@@ -21,7 +18,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="flex-nowrap overflow-clip overflow-hidden sticky top-0 bg-white p-3 w-full flex border-t border-gray-200 justify-center space-x-12 text-black font-sans font-light">
+    <header className="z-10 flex-nowrap overflow-clip overflow-hidden sticky top-0 bg-white p-3 w-full flex border-t border-gray-200 justify-center space-x-12 text-black font-sans font-light">
       <div className="grow flex">
         <Link
           className="min-w-14 items-center justify-center flex flex-col"
@@ -47,7 +44,6 @@ export default function Header() {
               Home
             </span>
           </button>
-          {/* <img src="/logo.png" /> */}
         </Link>
         {success && (
           <div className="ml-3 bg-green-400 text-white text-md rounded-xl font-light p-3">

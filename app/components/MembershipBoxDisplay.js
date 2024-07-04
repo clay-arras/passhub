@@ -9,7 +9,7 @@ export default function MembershipBoxDisplay({
   picture,
   price,
 }) {
-  const { selectedMemberships, setSelectedMemberships } =
+  const { setSelectedMemberships } =
     useContext(MembershipContext);
   const addToCart = () => {
     setSelectedMemberships((prev) => {

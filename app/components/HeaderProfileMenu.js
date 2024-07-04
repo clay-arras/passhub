@@ -2,12 +2,11 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
-  DropdownSection,
   DropdownItem,
 } from "@nextui-org/dropdown";
 import { signIn, signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import { Avatar, AvatarGroup, AvatarIcon } from "@nextui-org/avatar";
+import { Avatar } from "@nextui-org/avatar";
 
 export default function HeaderProfileMenu() {
   const { data: session } = useSession();
@@ -19,8 +18,12 @@ export default function HeaderProfileMenu() {
           <DropdownTrigger>
             <button className="">
               <div className="pl-3 min-w-16 items-center justify-center flex flex-col">
-                <Avatar src={session?.user?.image} isBordered showFallback name={session?.user?.name}/>
-                {/* <span>Hello, {session?.user?.name}</span> */}
+                <Avatar
+                  src={session?.user?.image}
+                  isBordered
+                  showFallback
+                  name={session?.user?.name}
+                />
               </div>
             </button>
           </DropdownTrigger>

@@ -4,15 +4,12 @@ import { useState, useEffect } from "react";
 import categoryNames from "@/app/lib/category";
 import CategoryButton from "@/app/components/CategoryButton";
 import MembershipBoxDisplay from "@/app/components/MembershipBoxDisplay";
-import { useRouter } from "next/navigation";
 import { Input } from "@nextui-org/react";
-import { NextUIProvider } from "@nextui-org/system";
 
 export default function Home() {
   const [categorySelect, setCategorySelect] = useState("All");
   const [productsInfos, setProductsInfos] = useState([]);
   const [phrase, setPhrase] = useState("");
-  const router = useRouter();
 
   useEffect(() => {
     fetch("/api/membership")
@@ -36,49 +33,47 @@ export default function Home() {
   }
 
   return (
-    <NextUIProvider disablebaseline="true" navigate={router.push}>
-      <div className="p-1">
-        <div className="m-2">
-          <Input
-            value={phrase}
-            onChange={(e) => setPhrase(e.target.value)}
-            type="text"
-            placeholder="Search for products..."
-            variant="underlined"
-            // className="bg-stone-100 w-full py-2 px-4 rounded-xl font-light font-sans"
-          />
-        </div>
-        <div className="mx-2">
-          <div
-            className={
-              "overflow-hidden overflow-x-scroll flex flex-nowrap snap-x scrollbar-hide"
-            }
-          >
-            {categoryNames.map((categoryName) => {
-              return (
-                <div
-                  key={categoryName}
-                  className="snap-start min-w-32 flex grow items-center justify-center m-1 rounded-xl border"
-                >
-                  <CategoryButton
-                    handleClick={() => {
-                      setCategorySelect(categoryName);
-                    }}
-                    categoryName={categoryName}
-                    isSelected={categorySelect === categoryName}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className="flex my-3 border-t pt-3 mx-2"></div>
-        <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {displayProductsInfos.map((productInfos) => {
-            return <MembershipBoxDisplay {...productInfos} />;
+    <div className="p-1">
+      <div className="m-2">
+        <Input
+          value={phrase}
+          onChange={(e) => setPhrase(e.target.value)}
+          type="text"
+          placeholder="Search for products..."
+          variant="underlined"
+          className="z-0"
+        />
+      </div>
+      <div className="mx-2">
+        <div
+          className={
+            "overflow-hidden overflow-x-scroll flex flex-nowrap snap-x scrollbar-hide"
+          }
+        >
+          {categoryNames.map((categoryName) => {
+            return (
+              <div
+                key={categoryName}
+                className="snap-start min-w-32 flex grow items-center justify-center m-1 rounded-xl border"
+              >
+                <CategoryButton
+                  handleClick={() => {
+                    setCategorySelect(categoryName);
+                  }}
+                  categoryName={categoryName}
+                  isSelected={categorySelect === categoryName}
+                />
+              </div>
+            );
           })}
         </div>
       </div>
-    </NextUIProvider>
+      <div className="flex my-3 border-t pt-3 mx-2"></div>
+      <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {displayProductsInfos.map((productInfos) => {
+          return <MembershipBoxDisplay {...productInfos} />;
+        })}
+      </div>
+    </div>
   );
 }
