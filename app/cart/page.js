@@ -23,7 +23,6 @@ export default function CheckoutPage() {
       toFetch = false;
     };
   }, [selectedMemberships]);
-  // console.log("MEM", membershipsInfos);
 
   const removeFromSelected = (id) => {
     const pos = selectedMemberships.indexOf(id);
