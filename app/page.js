@@ -71,7 +71,7 @@ export default function Home() {
       <div className="flex my-3 border-t pt-3 mx-2"></div>
       <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {displayProductsInfos.map((productInfos) => {
-          return <MembershipBoxDisplay {...productInfos} />;
+          return <MembershipBoxDisplay {...productInfos} key={productInfos._id}/>;
         })}
       </div>
     </div>
