@@ -3,14 +3,22 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MembershipContext } from "./MembershipContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import HeaderProfileMenu from "./HeaderProfileMenu";
 
 export default function Header() {
   const router = useRouter();
-  const { selectedMemberships } = useContext(MembershipContext);
+  const { selectedMemberships, setSelectedMemberships } = useContext(MembershipContext);
+  const [success, setSuccess] = useState(false);
   const { data: session } = useSession();
+
+  useEffect(() => {
+    if (window.location.href.includes("success")) {
+      setSelectedMemberships([]);
+      setSuccess(true);
+    }
+  }, []);
 
   return (
     <header className="flex-nowrap overflow-clip overflow-hidden sticky top-0 bg-white p-3 w-full flex border-t border-gray-200 justify-center space-x-12 text-black font-sans font-light">
@@ -41,6 +49,11 @@ export default function Header() {
           </button>
           {/* <img src="/logo.png" /> */}
         </Link>
+        {success && (
+          <div className="ml-3 bg-green-400 text-white text-md rounded-xl font-light p-3">
+            Thanks for your order!
+          </div>
+        )}
       </div>
       <div className="flex">
         <Link

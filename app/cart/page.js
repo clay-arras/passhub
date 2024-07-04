@@ -11,13 +11,19 @@ export default function CheckoutPage() {
   const [membershipsInfos, setMembershipsInfos] = useState([]);
 
   useEffect(() => {
+    let toFetch = true;
     fetch("api/membership?ids=" + selectedMemberships.join(","))
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-        setMembershipsInfos(res);
+        if (toFetch) {
+          setMembershipsInfos(res);
+        }
       });
+    return () => {
+      toFetch = false;
+    };
   }, [selectedMemberships]);
+  // console.log("MEM", membershipsInfos);
 
   const removeFromSelected = (id) => {
     const pos = selectedMemberships.indexOf(id);
@@ -44,13 +50,14 @@ export default function CheckoutPage() {
         <div className="border-t my-2"></div>
         <div className="flex flex-row">
           <div className="w-3/4">
-            {!selectedMemberships.length && (
+            {selectedMemberships.length === 0 ? (
               <div className="text-md">No items in your cart</div>
-            )}
+            ) : null}
             {selectedMemberships.length === 0 ? null : (
               <div className="flex flex-col">
                 {membershipsInfos?.map((membershipInfos) => (
                   <MembershipCheckoutBoxDisplay
+                    key={membershipInfos._id}
                     membershipInfos={membershipInfos}
                     handleDelete={() => removeFromSelected(membershipInfos._id)}
                   />
@@ -64,7 +71,10 @@ export default function CheckoutPage() {
             <div className="mt-2 text-md">Delivery: ${delivery}</div>
             <div className="mt-2 border-t border-slate-400"></div>
             <div className="mt-2 text-md">Total: ${subtotal + delivery}</div>
-            <form action={"/api/checkout?ids=" + selectedMemberships.join(",")} method="POST">
+            <form
+              action={"/api/checkout?ids=" + selectedMemberships.join(",")}
+              method="POST"
+            >
               <input
                 type="hidden"
                 name="memberships"
