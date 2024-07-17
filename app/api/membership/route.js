@@ -2,9 +2,6 @@ import Membership from "@/app/models/Membership";
 import { initMongoose } from "@/app/lib/mongoose";
 import { createRedisInstance } from "../redis";
 
-const MAX_AGE = 60_000 * 60;
-const EXPIRY_MS = `PX`;
-
 export async function findAllMemberships() {
   return Membership.find().exec();
 }
@@ -17,20 +14,18 @@ async function handler(req, res) {
   const key = "key#" + ids;
   const cached = await redis.get(key);
   if (cached) {
-    console.log(cached);
-    return JSON.parse(cached);
+    return Response.json(JSON.parse(cached));
   }
 
   if (ids) {
     const idsArray = ids.split(",");
-    const data = Response.json(await Membership.find({ _id: { $in: idsArray } }));
-    await redis.set(key, JSON.stringify(data), EXPIRY_MS, MAX_AGE);
-    return data;
+    const data = await Membership.find({ _id: { $in: idsArray } });
+    await redis.set(key, JSON.stringify(data));
+    return Response.json(data);
   } else {
-    const data = Response.json(await findAllMemberships());
-    await redis.set(key, JSON.stringify(data), EXPIRY_MS, MAX_AGE);
-    return data;
-
+    const data = await findAllMemberships();
+    await redis.set(key, JSON.stringify(data));
+    return Response.json(data);
   }
 }
 

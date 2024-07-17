@@ -2,9 +2,9 @@ import Redis from "ioredis";
 
 function getRedisConfiguration() {
   const config = {
-    // host: process.env.REDIS_HOST,
-    // password: process.env.REDIS_PASSWORD,
-    // port: process.env.REDIS_PORT,
+    host: process.env.REDIS_HOST,
+    password: process.env.REDIS_PASSWORD,
+    port: process.env.REDIS_PORT,
   };
 
   return config;
@@ -13,13 +13,9 @@ function getRedisConfiguration() {
 export function createRedisInstance(config = getRedisConfiguration()) {
   try {
     const options = {
-      host: process.env.UPSTASH_REDIS_REST_URL,
-      // host: config.host,
-      // port: config.port,
-      // password: config.password,
-      lazyConnect: true,
-      showFriendlyErrorStack: true,
-      enableAutoPipelining: true,
+      host: config.host,
+      port: config.port,
+      password: config.password,
       maxRetriesPerRequest: 4,
       retryStrategy: (times) => {
         if (times > 3) {
@@ -30,8 +26,7 @@ export function createRedisInstance(config = getRedisConfiguration()) {
       },
     };
 
-    const redis = new Redis(options);
-
+    const redis = new Redis();
     redis.on("error", (error) => {
       console.warn("[Redis] Error connecting", error);
     });

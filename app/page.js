@@ -31,6 +31,7 @@ export default function Home() {
       p.name.toLowerCase().includes(phrase.toLowerCase())
     );
   }
+  console.log(productsInfos);
 
   return (
     <div className="p-1">
@@ -70,7 +71,7 @@ export default function Home() {
       </div>
       <div className="flex my-3 border-t pt-3 mx-2"></div>
       <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {displayProductsInfos.map((productInfos) => {
+        {(Array.isArray(displayProductsInfos) && displayProductsInfos.length > 0) && displayProductsInfos.map((productInfos) => {
           return <MembershipBoxDisplay {...productInfos} key={productInfos._id}/>;
         })}
       </div>
