@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PassHub
+
+A full-stack web application serving as a centralized hub for managing monthly memberships.
+
+![React](https://img.shields.io/badge/React.js-61DAFB?logo=react&logoColor=white&style=flat)
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white&style=flat)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white&style=flat)
+![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazon-aws&logoColor=white&style=flat)
+![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white&style=flat)
+
+## Features
+
+- **User Authentication**: Secure login and registration using Google OAuth.
+- **Database Integration**: Fetch and store data with MongoDB.
+- **Payment Processing**: Integrate Stripe API to enable payments.
+- **REST API**: Fetch memberships and handle purchases via Next.js API routes.
+- **Caching**: Implemented caching with Redis, reducing rendering times
+
+## Technologies Used
+
+- **Frontend**: React.js, Next.js, Tailwind CSS
+- **Backend**: Node.js, Next.js API Routes
+- **Database**: MongoDB
+- **Caching**: Redis
+- **Cloud Services**: AWS
+- **Payment Gateway**: Stripe API
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to set up the project locally.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Node.js** (v12 or higher)
+- **npm** (Node Package Manager)
+- **MongoDB** (Local or Cloud instance)
+- **Stripe Account** (For payment integration)
+- **Redis Server** (Optional, for caching)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the Repository**
 
-## Learn More
+   ```bash
+   git clone https://github.com/clay-arras/passhub.git
+   cd passhub
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install Dependencies**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Configure Environment Variables**
 
-## Deploy on Vercel
+   Create a `.env` file in the root directory and add the following variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   - **Google OAuth Settings**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+     ```env
+     GOOGLE_CLIENT_ID=your_google_client_id
+     GOOGLE_CLIENT_SECRET=your_google_client_secret
+     NEXTAUTH_SECRET=your_nextauth_secret
+     NEXTAUTH_URL=http://localhost:3000
+     ```
+
+   - **MongoDB Connection**
+
+     ```env
+     MONGODB_URL=your_mongodb_connection_string
+     ```
+
+   - **Stripe API Keys**
+
+     ```env
+     STRIPE_PUBLIC_KEY=your_stripe_public_key
+     STRIPE_SECRET_KEY=your_stripe_secret_key
+     ```
+
+   - **Redis Configuration** (Optional)
+
+     ```env
+     REDIS_HOST=your_redis_host
+     REDIS_PASSWORD=your_redis_password
+     REDIS_PORT=your_redis_port
+     ```
+
+   > **Note**: Replace the placeholder values with your actual credentials.
+
+4. **Run the Application**
+
+   ```bash
+   npm run dev
+   ```
+
+   The app should now be running at `http://localhost:3000`.
+
+## Usage
+
+- **Access the Application**
+
+  Open your web browser and navigate to `http://localhost:3000`.
+
+- **Authentication**
+
+  Use the Google Sign-In button to log in or register.
+
+- **Manage Memberships**
+
+  View available memberships fetched from the MongoDB database.
+
+- **Purchase Memberships**
+
+  Proceed to checkout using Stripe for payment processing.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
