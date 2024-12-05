@@ -9,6 +9,8 @@ A full-stack web application serving as a centralized hub for managing monthly m
 ![AWS](https://img.shields.io/badge/AWS-232F3E?logo=amazon-aws&logoColor=white&style=flat)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white&style=flat)
 
+![Video Demo](https://drive.google.com/file/d/1o6H3LW3dKsQGh4vM_bcV0UoRmIGgnpwF/view?usp=sharing)
+
 ## Features
 
 - **User Authentication**: Secure login and registration using Google OAuth.
