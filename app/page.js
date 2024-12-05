@@ -31,7 +31,6 @@ export default function Home() {
       p.name.toLowerCase().includes(phrase.toLowerCase())
     );
   }
-  console.log(productsInfos);
 
   return (
     <div className="p-1">

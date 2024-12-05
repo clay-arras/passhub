@@ -4,6 +4,7 @@ import { MembershipContext } from "@/app/components/MembershipContext";
 import { useContext, useEffect, useState } from "react";
 import { Image } from "@nextui-org/react";
 import MembershipCheckoutBoxDisplay from "../components/MembershipCheckoutBoxDisplay";
+import { motion } from "framer-motion";
 
 export default function CheckoutPage() {
   const { selectedMemberships, setSelectedMemberships } =
@@ -66,10 +67,10 @@ export default function CheckoutPage() {
           </div>
           <div className="w-1/4 rounded-lg bg-gray-100 p-3 ">
             <div>Order Summary</div>
-            <div className="mt-2 text-md">Subtotal: ${subtotal}</div>
-            <div className="mt-2 text-md">Delivery: ${delivery}</div>
+            <div className="mt-2 text-md">Subtotal: ${(subtotal).toFixed(2)}</div>
+            <div className="mt-2 text-md">Delivery: ${(delivery).toFixed(2)}</div>
             <div className="mt-2 border-t border-slate-400"></div>
-            <div className="mt-2 text-md">Total: ${subtotal + delivery}</div>
+            <div className="mt-2 text-md">Total: ${(subtotal + delivery).toFixed(2)}</div>
             <form
               action={"/api/checkout?ids=" + selectedMemberships.join(",")}
               method="POST"
@@ -79,12 +80,15 @@ export default function CheckoutPage() {
                 name="memberships"
                 value={selectedMemberships.join(",")}
               />
-              <button
+              <motion.button
                 type="submit"
-                className="bg-stone-400 mt-3 rounded-xl p-2 text-white drop-shadow-md"
+                className="bg-stone-400 mt-3 rounded-xl p-2 text-white drop-shadow-md hover:bg-stone-500"
+                whileTap={{ scale: 0.9 }}
               >
-                Check out
-              </button>
+                <div>
+                  Check out
+                </div>
+              </motion.button>
             </form>
           </div>
         </div>

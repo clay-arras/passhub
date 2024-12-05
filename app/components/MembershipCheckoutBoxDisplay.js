@@ -18,7 +18,7 @@ export default function MembershipCheckoutBoxDisplay({ membershipInfos, handleDe
             Delete
           </button>
         </div>
-        <div className="w-1/4 text-right mr-3">${price}</div>
+        <div className="w-1/4 text-right mr-3">${(price).toFixed(2)}</div>
       </div>
     </div>
   );

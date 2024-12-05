@@ -46,10 +46,10 @@ async function handler(req, res) {
 
   if (checkoutSession.payment_status == "paid" || checkoutSession.livemode == false) {
     await Order.collection.insertOne({
-      user_email: session?.data?.email || null,
-      timestamp: Date.now,
+      user_email: session?.user?.email || null,
+      timestamp: new Date(),
       order_total: checkoutSession.amount_total,
-      items: memberships.map(x => x._id),
+      items: ids.map(x => ({ item_id: x })),
     });
   } 
 

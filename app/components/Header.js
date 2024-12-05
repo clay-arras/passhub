@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MembershipContext } from "./MembershipContext";
 import { useContext, useState, useEffect } from "react";
 import HeaderProfileMenu from "./HeaderProfileMenu";
+import { motion } from "framer-motion";
 
 export default function Header() {
   const { selectedMemberships, setSelectedMemberships } =
@@ -73,7 +74,14 @@ export default function Header() {
               </svg>
             </div>
             <span className="text-center group-hover:font-extralight">
-              {"Cart " + selectedMemberships.length.toString()}
+              <motion.div
+                key={selectedMemberships.length}
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: [1, 0.8, 1], scale: [1, 1.1, 1] }}
+                transition={{ duration: 0.3, times: [0, 0.5, 1] }}
+              >
+                {"Cart " + selectedMemberships.length.toString()}
+              </motion.div>
             </span>
           </button>
         </Link>

@@ -61,12 +61,12 @@ export default function MembershipBoxDisplay({
             {/* <div className="ml-3 text-right grow text-ellipsis overflow-hidden text-nowrap">6,053 miles</div> */}
           </div>
           <div className="text-xs font-sans mt-1">
-            <span className="font-medium">${price}</span>
+            <span className="font-medium">${(price).toFixed(2)}</span>
             <span className="text-gray-500"> / week</span>
           </div>
           <button
             onClick={addToCart}
-            className="rounded-full bg-stone-500 py-1 px-2 mt-2 text-xs font-light text-white"
+            className="rounded-full bg-stone-500 hover:bg-stone-600 py-1 px-2 mt-2 text-xs font-light text-white"
           >
             Add to cart
           </button>
