@@ -3,8 +3,8 @@ import Redis from "ioredis";
 function getRedisConfiguration() {
   const config = {
     host: process.env.REDIS_HOST,
-    password: process.env.REDIS_PASSWORD,
     port: process.env.REDIS_PORT,
+    // password: process.env.REDIS_PASSWORD,
   };
 
   return config;
@@ -15,7 +15,7 @@ export function createRedisInstance(config = getRedisConfiguration()) {
     const options = {
       host: config.host,
       port: config.port,
-      password: config.password,
+      // password: config.password,
       maxRetriesPerRequest: 4,
       retryStrategy: (times) => {
         if (times > 3) {

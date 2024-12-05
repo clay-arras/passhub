@@ -3,6 +3,7 @@ import Membership from "@/app/models/Membership";
 import { redirect } from "next/navigation";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
+import Order from "@/app/models/Order";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -42,6 +43,15 @@ async function handler(req, res) {
     success_url: `${req.headers.get("origin")}/?success=true`,
     cancel_url: `${req.headers.get("origin")}/?canceled=true`,
   });
+
+  if (checkoutSession.payment_status == "paid" || checkoutSession.livemode == false) {
+    await Order.collection.insertOne({
+      user_email: session?.data?.email || null,
+      timestamp: Date.now,
+      order_total: checkoutSession.amount_total,
+      items: memberships.map(x => x._id),
+    });
+  } 
 
   redirect(checkoutSession.url);
 }

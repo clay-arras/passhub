@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dropdown,
   DropdownTrigger,
@@ -28,9 +30,9 @@ export default function HeaderProfileMenu() {
             </button>
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
-            {/* <DropdownItem key="account" href={"/account"} className="text-sm">
+            <DropdownItem key="account" href={"/account"} className="text-sm">
               Your Profile
-            </DropdownItem> */}
+            </DropdownItem>
             <DropdownItem
               key="signout"
               className="text-sm text-gray-500"
