@@ -11,15 +11,21 @@ async function handler(req, res) {
   const ids = req.nextUrl.searchParams.get("ids");
 
   const redis = createRedisInstance();
-  const key = "key#" + ids;
+
+  let key = "key#all";
+  if (ids) {
+    const sortedIds = ids.split(",").sort();
+    key = "key#" + sortedIds.join(",");
+  }
+
   const cached = await redis.get(key);
   if (cached) {
     return Response.json(JSON.parse(cached));
   }
 
   if (ids) {
-    const idsArray = ids.split(",");
-    const data = await Membership.find({ _id: { $in: idsArray } });
+    const sortedIds = ids.split(",").sort();
+    const data = await Membership.find({ _id: { $in: sortedIds } });
     await redis.set(key, JSON.stringify(data));
     return Response.json(data);
   } else {

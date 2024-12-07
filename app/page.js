@@ -33,7 +33,7 @@ export default function Home() {
   }
 
   return (
-    <div className="p-1">
+    <div className="p-1 px-8">
       <div className="m-2">
         <Input
           value={phrase}
